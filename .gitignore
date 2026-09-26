@@ -1,0 +1,4 @@
+/Docs/comments.md
+.venv/*
+__pycache__/
+*.pyc
