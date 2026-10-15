@@ -2,6 +2,12 @@
 from fastapi import FastAPI
 # import the router from endpoints
 from api.endpoints import router as api_router
+from db.database import Base, engine
+# import models so they register their tables on Base.metadata before create_all runs
+from models import model
+
+# create all tables that don't exist yet
+Base.metadata.create_all(bind=engine)
 
 # create the application object
 app = FastAPI()
