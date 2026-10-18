@@ -40,6 +40,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Docker image names must be lowercase, but github.repository
+      # ("Nabil-Haddad/deploy-able-prototype") has uppercase letters,
+      # so it has to be lowercased before it can be used as a tag.
+      - name: Compute lowercase image name
+        run: echo "IMAGE_NAME=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_ENV"
+
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -52,4 +58,4 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/${{ env.IMAGE_NAME }}:latest
