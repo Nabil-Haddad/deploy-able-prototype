@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.git/
+.gitignore
+.env
+.env.example
+data/
+tests/
+Docs/
+.pytest_cache/
+.vscode/
+README.md
+requirements.txt
+requirements-dev.txt
+src/FrontEnd/
